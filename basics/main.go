@@ -6,18 +6,18 @@ import (
 )
 
 func main() {
-	var message string
-	message = sayHello("Максим", 21)
-	printMessage(message)
-	printMessage("вызов 1")
-	printMessage("вызов 2")
-	printMessage("вызов 3")
-	mesage, err := enterTheClub(12)
-	if err != nil {
-		fmt.Println(err)
-		return
-	}
-	fmt.Println(mesage)
+	// var message string
+	// message = sayHello("Максим", 21)
+	// printMessage(message)
+	// printMessage("вызов 1")
+	// printMessage("вызов 2")
+	// printMessage("вызов 3")
+	// mesage, err := enterTheClub(12)
+	// if err != nil {
+	// 	fmt.Println(err)
+	// 	return
+	// }
+	fmt.Println(prediction("rrgrtg"))
 }
 
 func printMessage(message string) {
@@ -39,4 +39,19 @@ func enterTheClub(age int) (string, error) {
 
 	return "Тебе нет 18-ти", errors.New("you are too young")
 	
+}
+
+func prediction(dayOfWeek string) (string,error) {
+	switch dayOfWeek {
+	case "пн":
+		return "Хорошего тебе начала недели!", nil
+	case "вт":
+		return "Прекрасного тебе вторника!", nil
+	case "ср":
+		return "Замечательной тебе среды!", nil
+	case "чт":
+		return "Четверг - это маленькая пятница! Только не переборщи!", nil
+	default:
+		return "невалидный день недели", errors.New("invalid day of the week")
+	}
 }

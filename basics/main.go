@@ -6,6 +6,7 @@ import (
 )
 
 func main() {
+<<<<<<< HEAD
 	// var message string
 	// message = sayHello("Максим", 21)
 	// printMessage(message)
@@ -18,6 +19,20 @@ func main() {
 	// 	return
 	// }
 	fmt.Println(prediction("rrgrtg"))
+=======
+	var message string
+	message = sayHello("Максим", 21)
+	printMessage(message)
+	printMessage("вызов 1")
+	printMessage("вызов 2")
+	printMessage("вызов 3")
+	mesage, err := enterTheClub(12)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	fmt.Println(mesage)
+>>>>>>> 62091d5c1fa39ef57490d8106510a6018ff690bc
 }
 
 func printMessage(message string) {
@@ -39,6 +54,7 @@ func enterTheClub(age int) (string, error) {
 
 	return "Тебе нет 18-ти", errors.New("you are too young")
 	
+<<<<<<< HEAD
 }
 
 func prediction(dayOfWeek string) (string,error) {
@@ -54,4 +70,6 @@ func prediction(dayOfWeek string) (string,error) {
 	default:
 		return "невалидный день недели", errors.New("invalid day of the week")
 	}
+=======
+>>>>>>> 62091d5c1fa39ef57490d8106510a6018ff690bc
 }

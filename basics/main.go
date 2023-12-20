@@ -3,30 +3,27 @@ package main
 import "fmt"
 
 func main() {
-	// messages := []string{
-	// 	"message 1",
-	// 	"message 2",
-	// 	"message 3",
-	// 	"message 4",
-	// }
+	defer handlerPanic()
+	// defer printMessage()
 
-	// for i := 0; i < len(messages); i++ {
-	// 	fmt.Println(messages[i])
-	// }
-
-	// for _, message := range messages {
-	// 	fmt.Println(message)
-	// }
-
-
-    counter := 0
-	for {
-		if counter == 100 {
-			break
-		}
-
-		counter++
-		fmt.Println(counter)
+	// fmt.Println("main()")
+	messages := []string{
+		"message 1",
+		"message 2",
+		"message 3",
+		"message 4",
 	}
+    fmt.Println(messages)
+	messages[4] = "message 5"
+
+	//fmt.Println(messages)
+	//panic("aaaaaaaaaa help")
 }
 	
+func handlerPanic() {
+    if r := recover(); r != nil {
+		fmt.Println(r)
+	}
+
+	fmt.Println("handlerPanic() выполнилась успешно")
+}

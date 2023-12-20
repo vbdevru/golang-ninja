@@ -3,27 +3,39 @@ package main
 import "fmt"
 
 func main() {
-	defer handlerPanic()
-	// defer printMessage()
+	 users := map[string]int{
+		"Vasya": 15,
+		"Petya": 23,
+		"Kostya": 48,
+	 }
 
-	// fmt.Println("main()")
-	messages := []string{
-		"message 1",
-		"message 2",
-		"message 3",
-		"message 4",
-	}
-    fmt.Println(messages)
-	messages[4] = "message 5"
-
-	//fmt.Println(messages)
-	//panic("aaaaaaaaaa help")
-}
+	 fmt.Println(len(users))
 	
-func handlerPanic() {
-    if r := recover(); r != nil {
-		fmt.Println(r)
-	}
 
-	fmt.Println("handlerPanic() выполнилась успешно")
+	 // users["Serega"] = 21
+    //  var  users map[string]int
+	//  users = make(map[string]int)
+
+	//  users["Vasya"] = 19
+
+	//  fmt.Println(users)
+	 
+	//  delete(users, "Vasya")
+
+	//  for key, value := range users {
+	// 	fmt.Println(key, value)
+	//  }
+
+	//  age, ok := users["Serega"]
+	//  if ok {
+	// 	fmt.Println("Kostya", age)
+	//  } else {
+	// 	fmt.Println("нет в списке")
+	//  }
+
+	//  age, exists := users["Serega"]
+	//  fmt.Println(age, exists)
+
+	//  age2, exists2 := users["Petya"]
+	//  fmt.Println(age2, exists2)
 }

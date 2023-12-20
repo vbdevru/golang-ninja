@@ -2,7 +2,15 @@ package main
 
 import "fmt"
 
+var msg string
+
+func init() {
+	msg = "from init()"
+}
+
 func main() {
+	fmt.Println(msg)
+
 	inc := increment()
 	fmt.Println(inc())
 	fmt.Println(inc())

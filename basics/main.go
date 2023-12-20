@@ -1,41 +1,84 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
+
+type Age int 
+
+func (a Age) isAdult() bool {
+	return a >= 18
+}
+
+type User struct {
+	name   string
+	age    Age
+	sex    string
+	weight int
+	height int
+}
+
+func (u *User) setName(name string) {
+	u.name = name
+}
+
+func (u User) getName() string {
+	return u.name
+}
+
+type DumbDatabase struct {
+	m map[string]string
+}
+
+func NewDumbDatabase() *DumbDatabase {
+	return &DumbDatabase{
+		m: make(map[string]string),
+	}
+}
+
+func NewUser(name, sex string, age, weight, height int) User {
+	return User{
+		name: name,
+		sex: sex,
+		age: Age(age),
+		weight: weight,
+		height: height,
+	}
+}
 
 func main() {
-	 users := map[string]int{
-		"Vasya": 15,
-		"Petya": 23,
-		"Kostya": 48,
-	 }
+	user1 := NewUser("Vasya", "Male", 12, 75, 186)
+	user2 := User{"Petya", 31, "Male", 84, 197}
 
-	 fmt.Println(len(users))
-	
+	// user1.printUserInfo("Kostya")
+	// user2.printUserInfo("Serega")
 
-	 // users["Serega"] = 21
-    //  var  users map[string]int
-	//  users = make(map[string]int)
+	user1.setName("Serega")
 
-	//  users["Vasya"] = 19
+	fmt.Println(user1.age.isAdult())
 
-	//  fmt.Println(users)
-	 
-	//  delete(users, "Vasya")
+	fmt.Println(user1.getName())
+	fmt.Println(user2.getName())
 
-	//  for key, value := range users {
-	// 	fmt.Println(key, value)
-	//  }
+	// printUserInfo(user1)
+	// printUserInfo(user2)
 
-	//  age, ok := users["Serega"]
-	//  if ok {
-	// 	fmt.Println("Kostya", age)
-	//  } else {
-	// 	fmt.Println("нет в списке")
-	//  }
+    // fmt.Println(user1.name, user1.age)
+	// fmt.Println(user2.name)
 
-	//  age, exists := users["Serega"]
-	//  fmt.Println(age, exists)
+	// user := struct {
+	// 	name   string
+	// 	age    int
+	// 	sex    string
+	// 	weight int
+	// 	height int
+	// }{"Vasya", 23, "Male", 75, 185}
 
-	//  age2, exists2 := users["Petya"]
-	//  fmt.Println(age2, exists2)
+	// fmt.Printf("%+v\n", user)
+	// fmt.Printf("%+v\n", user1)
+	// fmt.Printf("%+v\n", user2)
 }
+
+// func printUserInfo(user User) {
+// 	fmt.Println(user.name, user.age, user.sex, user.weight, user.height)
+// }

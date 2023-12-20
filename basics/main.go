@@ -3,21 +3,28 @@ package main
 import "fmt"
 
 func main() {
-	fmt.Println(findMax(1, 2, 3, 5623, 1234, -2, 53, -55, 25252, 252))
+	inc := increment()
+	fmt.Println(inc())
+	fmt.Println(inc())
+	fmt.Println(inc())
+	fmt.Println(inc())
+
+	fmt.Println(increment2())
+	fmt.Println(increment2())
+	fmt.Println(increment2())
+	fmt.Println(increment2())
 }
 
-func findMax(numbers ...int) int {
-	if len(numbers) == 0 {
-		return 0
+func increment() func() int {
+	count := 0
+	return func() int {
+		count++
+		return count
 	}
+}
 
-	max := numbers[0]
-
-	for _, i := range numbers {
-		if i < max { 
-			max = i
-		}
-	}
-
-	return max
+func increment2() int {
+	count := 0
+	count++
+	return count
 }

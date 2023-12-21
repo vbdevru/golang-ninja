@@ -2,83 +2,79 @@ package main
 
 import (
 	"fmt"
+	"math"
 )
 
-type Age int 
-
-func (a Age) isAdult() bool {
-	return a >= 18
+type Shape interface {
+	ShapeWithArea
+	ShapeWithPerimetr
 }
 
-type User struct {
-	name   string
-	age    Age
-	sex    string
-	weight int
-	height int
+type ShapeWithArea interface {
+	Area() float32
 }
 
-func (u *User) setName(name string) {
-	u.name = name
+type ShapeWithPerimetr interface {
+	Perimeter() float32
 }
 
-func (u User) getName() string {
-	return u.name
+type Square struct {
+	sideLenght float32
 }
 
-type DumbDatabase struct {
-	m map[string]string
+func (s Square) Area() float32 {
+	return s.sideLenght * s.sideLenght
 }
 
-func NewDumbDatabase() *DumbDatabase {
-	return &DumbDatabase{
-		m: make(map[string]string),
-	}
+func (s Square) Perimeter() float32 {
+	return s.sideLenght * 4
 }
 
-func NewUser(name, sex string, age, weight, height int) User {
-	return User{
-		name: name,
-		sex: sex,
-		age: Age(age),
-		weight: weight,
-		height: height,
-	}
+type Circle struct {
+	radius float32
+}
+
+func (c Circle) Area() float32 {
+	return c.radius * c.radius * math.Pi
+}
+
+func (c Circle) Perimeter() float32 {
+	return 2 * c.radius * c.radius
 }
 
 func main() {
-	user1 := NewUser("Vasya", "Male", 12, 75, 186)
-	user2 := User{"Petya", 31, "Male", 84, 197}
+	square := Square{5}
+	circle := Circle{8}
 
-	// user1.printUserInfo("Kostya")
-	// user2.printUserInfo("Serega")
+	printShapeArea(square)
+	printShapeArea(circle)
 
-	user1.setName("Serega")
-
-	fmt.Println(user1.age.isAdult())
-
-	fmt.Println(user1.getName())
-	fmt.Println(user2.getName())
-
-	// printUserInfo(user1)
-	// printUserInfo(user2)
-
-    // fmt.Println(user1.name, user1.age)
-	// fmt.Println(user2.name)
-
-	// user := struct {
-	// 	name   string
-	// 	age    int
-	// 	sex    string
-	// 	weight int
-	// 	height int
-	// }{"Vasya", 23, "Male", 75, 185}
-
-	// fmt.Printf("%+v\n", user)
-	// fmt.Printf("%+v\n", user1)
-	// fmt.Printf("%+v\n", user2)
+	// printInterface(square)
+	// printInterface(circle)
+	printInterface(99)
+	printInterface("str")
 }
 
-// func printUserInfo(user User) {
-// 	fmt.Println(user.name, user.age, user.sex, user.weight, user.height)
-// }
+func printShapeArea(shape Shape) {
+	fmt.Println(shape.Area())
+	fmt.Println(shape.Perimeter())
+}
+
+func printInterface(i interface{}) {
+	// switch value := i.(type) {
+	// case int:
+	// 	fmt.Println("int", value)
+	// case bool:
+	// 	fmt.Println("bool", value)
+	// default:
+	// 	fmt.Printf("unknown type", value)
+	// }
+	// fmt.Printf("%+v\n", i)
+
+	str, ok := i.(string)
+	if !ok {
+		fmt.Println("interface is not string")
+		return
+	}
+	fmt.Println(len(str))
+}

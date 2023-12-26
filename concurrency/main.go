@@ -80,7 +80,7 @@ func generateUsers(count int) []User {
 	for i := 0; i < count; i++ {
 		users[i] = User{
 			id: i + 1,
-			email: fmt.Sprintln("user%d@ninja.go", i+1),
+			email: fmt.Sprintf("user%d@ninja.go", i+1),
 			logs: generateLogs(rand.Intn(1000)),
 		}
 	}
